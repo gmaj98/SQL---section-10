@@ -1,0 +1,76 @@
+create table people (
+	name VARCHAR(100),
+    birthdate DATE,
+    birthtime TIME,
+    birthdt DATETIME);
+    
+DESC people
+
+INSERT INTO people (name, birthdate, birthtime, birthdt)
+VALUES ('Elton', '2000-12-25', '11:00:00', '2000-12-25 11:00:00'),
+		('Lulu', '1985-04-11', '9:45:10', '1985-04-11 9:45:10'),
+        ('Juan', '2020-08-15', '23:59:00', '2020-08-15 23:59:00');
+
+INSERT into people (name, birthdate, birthtime, birthdt)
+VALUES ('Hazel', curdate(), curtime(), now());
+
+SELECT 
+	birthdate,
+    DAY(birthdate),
+    dayofweek(birthdate),
+    dayofyear(birthdate)
+FROM people;
+
+SELECT
+	birthdate,
+    monthname(birthdate),
+    year(birthdate)
+FROM people;
+
+SELECT 
+	birthtime,
+    HOUR(birthtime),
+    minute(birthtime)
+FROM people;
+
+SELECT
+	birthdt,
+    MONTH(birthdt),
+    DAY(birthdt),
+    hour(BIRTHDT),
+    minute(BIRTHDT)
+FROM people;
+
+select
+	birthdate,
+    date_format(birthdate, '%a %b %D') FROM people;
+    
+select 
+	birthdate,
+    date_format(birthdate, '%H:%i') FROM people;
+
+SELECT birthdt,
+	date_format(birthdt, 'BORN ON: %r') from people;-- 
+    
+
+create table captions (
+	text VARCHAR(150),
+	created_at timestamp default current_timestamp);
+    
+create table capstions2(
+	text VARCHAR(150),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp ON update current_timestamp);
+    
+INSERT INTO capstions2 (text)
+VALUES ('hello');
+
+UPDATE capstions2 
+SET text = 'halo'
+WHERE text = 'hello';
+
+
+    
+
+
+
